@@ -48,16 +48,17 @@ def main():
         robot.say_text("Vector+ 1.0").result()
         robot.conn.release_control()
         # FoundAFace.takeAction(robot,"jason")
-        # Subscribe to the on_robot_observed_object event
+        
         on_robot_observed_face = functools.partial(on_robot_observed_face, robot)
         robot.events.subscribe(on_robot_observed_face, Events.robot_observed_face)
 
         on_robot_state = functools.partial(on_robot_state, robot)
         robot.events.subscribe(on_robot_state, Events.robot_state)
-
         
         while True: 
+            # this just keeps the system running; everything else runs off of event subscriptions so far
             time.sleep(100)
+            # maybe we'll put some random call to actions on timers
 
 if __name__ == "__main__":
     main()
